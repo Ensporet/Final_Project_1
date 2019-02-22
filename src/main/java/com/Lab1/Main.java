@@ -24,8 +24,8 @@ public class Main {
      * path for catalog save excel file
      */
     public final static File PATH_OF_SAVE =
-            // new File("SaveTestCatalog");
-            new File("C:\\Users\\enspo\\Desktop\\Новая папка");
+            new File("SaveTestCatalog");
+            //new File("C:\\Users\\enspo\\Desktop\\Новая папка");
 
 
     public final static long VERSION = 3L;
