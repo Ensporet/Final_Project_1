@@ -4,6 +4,9 @@ package com.Ens_Library.File;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Class file wrapper
+ */
 public class File_default implements IFile {
 
     private File file;
@@ -12,10 +15,19 @@ public class File_default implements IFile {
     public File newFile(File path) {
 
         if (path == null) {
-            return path;
+            path = new File("");
         }
 
+
         path = notCopuName(path.getAbsolutePath());
+
+        {
+            File parent;
+            if (!(parent = new File(path.getParent())).exists()) {
+                parent.mkdirs();
+            }
+        }
+
         try {
             path.createNewFile();
             setFile(path);
@@ -35,8 +47,8 @@ public class File_default implements IFile {
             return true;
         } else {
 
-           setFile((File)null);
-           return f.delete();
+            setFile((File) null);
+            return f.delete();
         }
 
     }

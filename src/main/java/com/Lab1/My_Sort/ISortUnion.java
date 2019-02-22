@@ -1,14 +1,24 @@
 package com.Lab1.My_Sort;
 
-public interface ISortUnion  extends ISort{
+/**
+ * Sort with union
+ */
+public interface ISortUnion extends ISort {
 
 
     @Override
-   default void sort(int[]... integerArray) {
+    default void sort(int[]... integerArray) {
 
-        sort(null , integerArray) ;
+        sort(null, integerArray);
 
-    };
+    }
 
-    int[] sort(ISort sort , int[] ...integerArray);
+    /**
+     * Sorts and combines all in one array
+     *
+     * @param sort
+     * @param integerArray
+     * @return
+     */
+    int[] sort(ISort sort, int[]... integerArray);
 }

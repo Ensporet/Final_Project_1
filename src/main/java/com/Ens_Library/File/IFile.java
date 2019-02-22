@@ -5,18 +5,12 @@ import java.io.File;
 
 public interface IFile {
 
-
-    //File file
-
-
-    //Function
-    //..................................................................................................................
-
     default File newFile(String path) {
-       return newFile( (path == null) ? null : new File(path));
-    };
+        return newFile((path == null) ? null : new File(path));
+    }
 
     File newFile(File path);
+
     boolean deleteFile(File f);
 
     //..................................................................................................................
@@ -30,9 +24,7 @@ public interface IFile {
     }
 
 
-
-
-   default File notCopuName(String name) {
+    default File notCopuName(String name) {
 
 
         if (name == null) {
@@ -66,15 +58,15 @@ public interface IFile {
 
             }
 
-
             // get st and int number
             int pos0 = n.lastIndexOf('(');
-            //System.out.println(pos0);
-
 
             try {
 
-                number = Integer.valueOf((n.charAt(n.length() - 1) == ')' && pos0 > -1) ? n.substring(pos0 + 1, n.length() - 1) : "");
+                number = Integer.valueOf(
+                        (n.charAt(n.length() - 1) == ')' &&
+                                pos0 > -1) ? n.substring(pos0 + 1, n.length() - 1) : ""
+                );
                 st = name.substring(0, (pos + 1) + (pos0 + 1));
 
             } catch (NumberFormatException e) {
@@ -85,7 +77,6 @@ public interface IFile {
 
 
         }
-
 
         while (true) {
 

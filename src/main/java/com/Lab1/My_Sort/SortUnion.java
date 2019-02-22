@@ -4,82 +4,70 @@ public class SortUnion implements ISortUnion {
 
 
     @Override
-    public int[] sort(ISort sort , int[]... integerArray) {
+    public int[] sort(ISort sort, int[]... integerArray) {
 
         if (integerArray == null || integerArray.length == 0) {
             return new int[0];
         }
 
-
         if (sort == null) {
-            sort = new SortBubble();
+            sort = new SortBubbleMinMax();
         }
 
-        SortUnion.SortClass [] sortClasses = new SortClass[integerArray.length];
+        SortUnion.SortClass[] sortClasses = new SortClass[integerArray.length];
         int size = 0;
-        for (int iteration = 0 ; iteration < integerArray.length ; iteration++) {
-            int [] i = integerArray[iteration];
+        for (int iteration = 0; iteration < integerArray.length; iteration++) {
+            int[] i = integerArray[iteration];
             sort.sort(i);
             sortClasses[iteration] = new SortClass(i);
             size += i.length;
         }
 
-
-        int [] ret = new int[size];
-        for (int iteration = 0 ; iteration < size ; iteration++ ) {
+        int[] ret = new int[size];
+        for (int iteration = 0; iteration < size; iteration++) {
             ret[iteration] = sethMin(sortClasses);
         }
-
-
         return ret;
     }
 
-
-
-
-
+    /**
+     * Changes the minimum value in an array that is sorted.
+     *
+     * @param sortClass
+     * @return
+     */
     private int sethMin(SortClass[] sortClass) {
 
-
         int posMin = -1;
-        Integer min = null ;
+        Integer min = null;
 
-        for (int iteration = 0; iteration < sortClass.length ; iteration++) {
-
+        for (int iteration = 0; iteration < sortClass.length; iteration++) {
 
             if (sortClass[iteration].isEnd()) {
                 continue;
             }
 
-            if ( (min == null || min > sortClass[iteration].getInt())) {
+            if ((min == null || min > sortClass[iteration].getInt())) {
                 min = sortClass[iteration].getInt();
                 posMin = iteration;
             }
-
         }
-
-
-
-     return sortClass[posMin].getIntIteration();
+        return sortClass[posMin].getIntIteration();
     }
 
-
-
-
-
-
-
+    @Override
+    public String getName() {
+        return "Sort with union";
+    }
 
     private class SortClass {
 
-        private final int[] intArray ;
+        private final int[] intArray;
         private int pos = 0;
-
 
         private SortClass(int[] intArray) {
             this.intArray = intArray;
         }
-
 
         int getInt() {
             return intArray[pos];
@@ -87,19 +75,11 @@ public class SortUnion implements ISortUnion {
 
         int getIntIteration() {
 
-
             return intArray[pos++];
         }
 
-
-        boolean isEnd () {
-            return (pos >= intArray.length) ;
+        boolean isEnd() {
+            return (pos >= intArray.length);
         }
-
-
-
-
     }
-
-
 }
